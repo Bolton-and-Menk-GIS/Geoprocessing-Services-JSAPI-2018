@@ -1,0 +1,16 @@
+{
+  "taxpayer_info": "{taxpayer_name}\r\n{taxpayer_addr}\r\n{taxpayer_csz}", 
+  "property_addr": "{address}\r\n{city}, {state} {zip}", 
+  "flt_building_sf": "{sf}", 
+  "flt_gis_acres": "{gis_acres}", 
+  "neighborhood": "{nbhd_assoc}", 
+  "flt_deeded_acres": "{acres}", 
+  "year_built": "{year_built}", 
+  "pin": "{formatted_pin}", 
+  "legal": "{legal}", 
+  "cur_land_est": "{land_full}", 
+  "cur_total_value": "{total_full}", 
+  "parcel_class": "{class_desc}", 
+  "cur_building_est": "{bldg_full}", 
+  "disclaimer": "The data provided herewith is for reference purposes only.  It is not suitable for legal, engineering, surveying or other purposes.  Polk County does not guarantee the accuracy of the information contained herein.  This data is furnished on an as is basis and Polk County makes no representations or warranties, either expressed or implied, for the merchantability or fitness of the information provided for any purpose.  This disclaimer is provided pursuant to Iowa Statues 466.03 and the user of the data provided herein acknowledges that Polk County shall not be liable for any damages."
+}
