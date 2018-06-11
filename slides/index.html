@@ -126,6 +126,13 @@
             <img class="fragment" src="./images/serviceInFolder.png" alt="">
           </div>
         </section>
+
+        <section class="slides" id="publish-pic">
+          <h3>Publishing</h3>
+          <div>
+            <img src="./images/gp_publish_tool.png" alt="publish gp service">
+          </div>
+        </section>
         
         <section class="slides" id="publish">
           <h2>Service Configuration</h2>
@@ -137,14 +144,9 @@
         <section class="slides" id="sync-vs-async">
           <h3>Synchronous vs Asynchronous Processing</h3>
           <ul>
-            <li class="fragment"><span class="bold">Synchronous GP Task</span> - should be for operations that execute quickly</li>
+            <li class="fragment"><span class="bold">Synchronous GP Task</span> - execute quickly</li>
 
-            <li class="fragment"><span class="bold">Asynchronous GP Task</span> - used for longer running processes</li>
-            <ul>
-              <li class="fragment">makes continuous calls to check the job status</li>
-              <li class="fragment">JS API - uses <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html#submitJob" target="_blank">Geoprocessor.submitJob()</a></li>
-            </ul>
-            <li class="fragment">both methods return a <a href="https://developers.google.com/web/fundamentals/primers/promises" target="_blank">Promise</a> that is resolved when the task is complete or fails</li>
+            <li class="fragment"><span class="bold">Asynchronous GP Task</span> - longer running processes</li>
 
           </ul>
         </section>
@@ -152,7 +154,7 @@
         <section class="slides" id="server-side" data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
           <h2>Server-Side Python Script</h2>
           <ul>
-            <li class="fragment">During publishing, Esri uses an internal validation process to check file paths in variables to ensure they're registered with data store.</li>
+            <li class="fragment">Esri uses an internal validation process to check file paths in variables to ensure they're registered with data store.</li>
             <ul>
               <li class="fragment">Hint: make sure any necessary file paths registered with the ArcGIS Server's Data Store</li>
               <li class="fragment">If any data is copied to the server, the <span class="code-text">'g_ESRI_variable_x'</span> is changed to that path on the local server</li>
@@ -178,11 +180,11 @@
           <h2>ArcGIS Server Concepts</h2>
           <ul>
             <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-task.htm" target="_blank">GP Task</a> - Service Definition for Tool</li>
-            <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-task.htm" target="_blank">GP Input</a> - represents an input parameter for the GP Task</li>
+            <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-task.htm" target="_blank">GP Input</a> - input parameter for the GP Task</li>
             <li class="fragment">Asynchronous only:</li>
             <ul>
-              <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-job.htm" target="_blank">GP Job</a> - represents a job from submit job and contains info such as jobId, status, messages, and results</li>
-              <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-result.htm" target="_blank">GP Result</a> - represents an output parameter from a GP Job</li>
+              <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-job.htm" target="_blank">GP Job</a> - job from submit job; contains info such as jobId, status, messages, and results</li>
+              <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-result.htm" target="_blank">GP Result</a> - output parameter from a GP Job</li>
             </ul>
             <li class="fragment"><a href="https://gis.bolton-menk.com/bmigis/rest/services/AGOL_MARKETING/ExportPropertyCard2/GPServer/ExportPropertyCard" target="_blank">Example GP Service</a></li>
             
@@ -192,7 +194,7 @@
         <section class="slides" id="js-api">
           <h2>Using Geoprocessing Services in the JavaScript API</h2>
           <ul>
-            <li class="fragment">Instantiate a <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html" target="_blank">Geoprocessor</a> with service url</li>
+            <li class="fragment">Instantiate a <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html" target="_blank">Geoprocessor()</a> with service url</li>
             <li class="fragment">Parameters must be passed as JSON, with the keys matching names in GP Service</li>
             <li class="fragment"><a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html#execute" target="_blank">Geoprocessor.execute()</a> runs a synchronous task</li>
             <ul>
@@ -488,8 +490,8 @@
             </ul>
             <li class="fragment">Provide a <span class="code-text">webpack.config.js</span> file with the following info</li>
             <ul>
-              <li class="fragment">entry point such as <span class="code-text">main.js</span></li>
-              <li class="fragment">output (<span class="text-code">dist/bundle.js</span>)</li>
+              <li class="fragment">entry point (<span class="code-text">main.js</span>)</li>
+              <li class="fragment">output (<span class="code-text">dist/bundle.js</span>)</li>
               <li class="fragment">loaders (module rules)</li>
               <ul>
                 <li class="fragment"><a href="https://github.com/vuejs/vue-loader" target="_blank">vue-loader</a>, <a href="https://github.com/vuejs/vue-loader" target="_blank">sass-loader</a>, <a href="https://github.com/webpack-contrib/file-loader" target="_blank">file-loader</a></li>
@@ -527,7 +529,46 @@
             </ul>
             <li class="fragment"><a href="https://community.esri.com/people/TWayson-esristaff/blog/2018/05/10/arcgiswebpack-plugin-vs-esri-loader" target="_blank">blog post</a></li>
           </ul>
+        </section>
 
+        <section class="slides" id="esri-loader-example">
+          <h3>esri-loader example</h3>
+          <pre><code class="hljs javascript" style="max-height: 650px; overflow-y: auto;" data-trim>
+            // esri loader
+            import { loadModules } from 'esri-loader';
+
+            // loadModules method is thin AMD wrapper
+            loadModules(['esri/Map', 'esri/views/SceneView'])
+              .then(([Map, SceneView]) => {
+                // ArcGIS Modules are available within this scope
+
+                // instantiating map
+                const map = new Map({
+                  basemap: 'satellite'
+                });
+
+                // instantiate scene
+                const view = new SceneView({
+                  map: map,
+                  zoom: 16,
+                  container: 'viewDiv',
+                  center: [-93.6, 41.6],
+                  popup: {
+                    highlightEnabled: false,
+                    dockOptions: {
+                      position: 'bottom-left'
+                    }
+                  }
+                });
+
+                // wait for the view to load
+                view.when( (view) => {
+
+                  // do stuff
+                });
+
+            });
+          </code></pre>
         </section>
       </section>
 
