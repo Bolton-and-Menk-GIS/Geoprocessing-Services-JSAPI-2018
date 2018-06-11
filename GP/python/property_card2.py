@@ -12,7 +12,6 @@ import arcpy
 import os
 import json
 import sys
-import textwrap
 
 # network share
 sys.path.append(r'\\some_server\demo\python')
