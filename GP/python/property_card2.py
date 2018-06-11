@@ -15,7 +15,7 @@ import sys
 import textwrap
 
 # network share
-sys.path.append(r'\\arcserver1\GIS\_Resources\ESRI\Python\BMI_Library\GeoprocessingServices\demo\python')
+sys.path.append(r'\\some_server\demo\python')
 import utils
 
 if sys.version_info[0] >= 3:

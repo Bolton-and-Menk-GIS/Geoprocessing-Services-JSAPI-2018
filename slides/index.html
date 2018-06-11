@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="shortcut icon" href="//www.bolton-menk.com/sites/default/files/favicon-16x16.ico">
-  <title>Title</title>
+  <title>Using GP Services with the ArcGIS JavaScript API</title>
 
   <!-- <link rel="stylesheet" href="reveal/css/theme/black.css"> -->
 
@@ -38,27 +38,74 @@
 			</section>
 
       <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::: || WHAT IS A GP SERVICE? || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || GP SERVICEES || ::::::::::::::::::::::: -->
       <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <section id="python-gp" data-background-transition="zoom">
+      <section id="gp-section" data-background-transition="zoom">
 
-        <section id='slide2' class='slides slide2' data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
+        <section id='intro' class='slides slide2' data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
             <h2 style='margin-bottom: 25px;'>What is a GeoProcessing Service?</h2>
             <ul>
               <li class="fragment">A Geoprocessing Service (GP Service) provides data management, conversion, and analytical capabilites through the ArcGIS REST API</li>
-              <li class='fragment'>A GP Service represents a published toolbox with a Python or ArcObjects based Script tool or model.</li>
-              <li class="fragment">This is useful because the client does not need to have ArcGIS Desktop installed because the process is ran by the ArcGIS Server in the backend via request made through HTTP protocol</li>
+              <li class='fragment'>A GP Service represents a published toolbox with a Python Script, ArcObjects based tool, or model from Model Builder.</li>
+              <li class="fragment">Does not require the user to have ArcGIS Desktop installed</li>
               </ul>
             </ul>
         </section>
 
-        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-        <!-- ::::::::::::::::::::: || CREATING A GP SERVICE || ::::::::::::::::::::::: -->
-        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-        <section class='slides' data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
+        <section class="slides" id="gp-considerations">
+          <h2>Geoprocessing Service Tool Considerations</h2>
+          <ul>
+            <li class="fragment">ArcGIS Server runs the tools we create, and it uses 64 bit Python</li>
+            <ul>
+              <li class="fragment">Can't use anything that requires 32 bit driver (excel, personal gdb, etc)</li>
+            </ul>
+            <li class="fragment">Extensions such as Spatial Analyst or Network Analyst cannot be used with an <a href="https://enterprise.arcgis.com/en/get-started/10.5/windows/what-is-arcgis-enterprise-.htm">Advanced License</a></li>
+            <li class="fragment">Input parameters must be passed from client application</li>
+            <ul>
+              <li class="fragment">cannot use <a href="http://pro.arcgis.com/en/pro-app/arcpy/geoprocessing_and_python/customizing-script-tool-behavior.htm" target="_blank">tool validation</a>, must happen on client side</li>
+              <li class="fragment">string, number, JSON as string (i.e. FeatureSet)</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="slides" id="py-modules" data-transition="concave" iddata-background-transition="zoom">
+          <h2>Using Custom or Third Party Modules in Scripts for GP Services</h2>
+          <ul>
+            <li class="fragment">The ArcGIS Server must have access to the modules</li>
+            <li class="fragment">Ways to ensure the server will always have access:</li>
+            <ul>
+              <li class="fragment">Place modules in <span class="code-text">C:\Python27\ArcGIS10.x\Lib\site-packages</span> folder or in <a href="https://leemendelowitz.github.io/blog/how-does-python-find-packages.html">PYTHONPATH</a></li>
+              <li class="fragment">Use a shared network path to host custom and third party modules</li>
+              <ul>
+                <li class="fragment">add shared network path to <span class="code-text">Server10.x.pth</span> file in <span class="code-text">site-packages</span> folder</li>
+                <li class="fragment">add <span class="code-text">sys.path.append(r'\\server\shared_py_lib')</span> to script before custom imports</li>
+              </ul>
+            </ul>
+            <li class="fragment">Make sure third party modules are <a href="http://enterprise.arcgis.com/en/server/latest/publish-services/linux/deploying-custom-python-packages.htm" target="_blank">64-bit versions</a></li>
+          </ul>
+        </section>
+
+        <section class="slides" id="params">
+          <h3>Getting and Setting Parameters in Python</h3>
+          <ul>
+            <li class="fragment">The Python script for the tool must be able to handle input arguments</li>
+            <ul>
+              <li class="fragment"><a href="https://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/getparameter.htm" target="_blank">arcpy.GetParameter(index)</a> - returns a
+                <a href="http://desktop.arcgis.com/en/arcmap/10.4/analyze/arcpy-classes/filter.htm" target="_blank">Parameter</a> Object for the input argument</li>
+              <li class="fragment"><a href="https://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/getparameterastext.htm" target="_blank">arcpy.GetParameterAsText(index)</a> - returns the input argument as text, regardless of type</li>
+              <ul>
+                <li class="fragment">can also use sys module: <span class="code-text">param = sys.argv[1] #0 is script name</span></li>
+              </ul>
+              <li class="fragment"><a href="https://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/setparameter.htm" target="_blank">arcpy.SetParameter(index)</a> - sets an output parameter so results can be returned to client</li>
+              <li class="fragment"><a href="https://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/setparameterastext.htm" target="_blank">arcpy.SetParameterAsText(index)</a> - sets an output parameter as text so results can be returned to client</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class='slides' id="create" data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
           <h2>Creating a GP Service</h2>
           <ul>
-            <li class="fragment">In order to create a GP Service, you must publish the results of tool that has been ran successfully in ArcMap/Catalog/ArcGIS Pro </li>
+            <li class="fragment">GP Services are created by publishing the results of tool that has been ran successfully in ArcGIS Desktop or Pro</li>
             <ul>
               <li class="fragment">ArcGIS Desktop:  After successfully running tool, open Geoprocessing Options > Results > right click tool result > Share As > Geoprocessing Service</li>
             </ul>
@@ -68,23 +115,181 @@
           <div>
             <img class="fragment" src="./images/serviceInFolder.png" alt="">
           </div>
+        </section>
+        
+        <section class="slides" id="publish">
+          <h2>Service Configuration</h2>
+          <div>
+            <img src="./images/gp_publish.png" alt="">
+          </div>
+        </section>
 
+        <section class="slides" id="sync-vs-async">
+          <h3>Synchronous vs Asynchronous Processing</h3>
+          <ul>
+            <li class="fragment"><span class="bold">Synchronous GP Task</span> - should be for operations that execute quickly</li>
+
+            <li class="fragment"><span class="bold">Asynchronous GP Task</span> - used for longer running processes</li>
+            <ul>
+              <li class="fragment">makes continuous calls to check the job status</li>
+              <li class="fragment">JS API - uses <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html#submitJob" target="_blank">Geoprocessor.submitJob()</a></li>
+            </ul>
+            <li class="fragment">both methods return a <a href="https://developers.google.com/web/fundamentals/primers/promises" target="_blank">Promise</a> that is resolved when the task is complete or fails</li>
+
+          </ul>
+        </section>
+
+        <section class="slides" id="server-side" data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
+          <h2>Server-Side Python Script</h2>
+          <ul>
+            <li class="fragment">During publishing, Esri uses an internal validation process to check file paths in variables to ensure they're registered with data store.</li>
+            <ul>
+              <li class="fragment">Hint: make sure any necessary file paths registered with the ArcGIS Server's Data Store</li>
+              <li class="fragment">If any data is copied to the server, the <span class="code-text">'g_ESRI_variable_x'</span> is changed to that path on the local server</li>
+              <li class="fragment"><a href="http://enterprise.arcgis.com/en/server/latest/publish-services/linux/authoring-geoprocessing-tasks-with-python-scripts.htm" target="_blank">imported modules are also checked</a></li>
+            </ul>
+          </ul>
+          <div class="fragment">
+            <!--<img class="fragment" src="./images/server_side_script.png" alt="">-->
+            <pre class="code"><code class="hljs python" data-trim>
+              # Esri start of added imports
+              import sys, os, arcpy
+              # Esri end of added imports
+
+              # Esri start of added variables
+              g_ESRI_variable_1 = u'\\\\arcserver2\\wwwroot\TempFiles'
+              # Esri end of added variables
+            </code></pre>
+          </div>
 
         </section>
 
-        <section class="slides" data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
-          <h2>Server-Side Python Script</h2>
+        <section class="slides" id="server-concepts">
+          <h2>ArcGIS Server Concepts</h2>
           <ul>
-            <li>During publishing, Esri uses an internal validation process to check file paths in variables to ensure they're registered with data store.</li>
+            <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-task.htm" target="_blank">GP Task</a> - Service Definition for Tool</li>
+            <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-task.htm" target="_blank">GP Input</a> - represents an input parameter for the GP Task</li>
+            <li class="fragment">Asynchronous only:</li>
             <ul>
-              <li>before publishing a GP service, make sure any necessary file paths are available to the ArcGIS Server's Data Store</li>
-              <li>If any data is copied to the server, the <span class="code-text">'g_ESRI_variable_x'</span> is changed to that path on the local server</li>
+              <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-job.htm" target="_blank">GP Job</a> - represents a job from submit job and contains info such as jobId, status, messages, and results</li>
+              <li class="fragment"><a href="https://developers.arcgis.com/rest/services-reference/gp-result.htm" target="_blank">GP Result</a> - represents an output parameter from a GP Job</li>
             </ul>
+            <li class="fragment"><a href="https://gis.bolton-menk.com/bmigis/rest/services/AGOL_MARKETING/ExportPropertyCard2/GPServer/ExportPropertyCard" target="_blank">Example GP Service</a></li>
+            
+          </ul>
+        </section>
+
+        <section class="slides" id="js-api">
+          <h2>Using Geoprocessing Services in the JavaScript API</h2>
+          <ul>
+            <li class="fragment">Instantiate a <a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html" target="_blank">Geoprocessor</a> with service url</li>
+            <li class="fragment">Parameters must be passed as JSON, with the keys matching names in GP Service</li>
+            <li class="fragment"><a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html#execute" target="_blank">Geoprocessor.execute()</a> runs a synchronous task</li>
+            <ul>
+              <li class="fragment">only one call made to server</li>
+            </ul>
+            <li class="fragment"><a href="https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-Geoprocessor.html#submitJob" target="_blank">Geoprocessor.submitJob()</a> runs an asynchronous task</li>
+            <ul>
+              <li class="fragment">makes continuous calls to check the job status</li>
+            </ul>
+            <li class="fragment">both methods return a <a href="https://developers.google.com/web/fundamentals/primers/promises" target="_blank">Promise</a> that is resolved when the task is complete or fails</li>
           </ul>
 
         </section>
 
+        <section class="slides" id="debug">
+          <h2>Debugging GP Services</h2>
+          <ul>
+            <li class="fragment">Use <a href="https://www.telerik.com/fiddler" target="_blank">Fiddler</a> or browser's dev tools to monitor request</li>
+            <li class="fragment">Create log files from within Python Script</li>
+            <li class="fragment">Check <a href="https://enterprise.arcgis.com/en/server/10.3/administer/linux/about-server-logs.htm" target="_blank">ArcGIS Server logs</a></li>
+          </ul>
+          
+          <div class="fragment" style="max-height: 600px; overflow-y: auto;">
+            <img src="./images/debug.png" alt="">
+          </div>
+
+        </section>
       </section>
+
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || FRAMEWORKS || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <section id="frameworks-section">
+        section.slides
+      </section>
+
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || ESRI LOADER AND WEBPACK || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <section id="final-section">
+
+        <section class="slides" id="webpack">
+          <h3>Demo App Build and Distribution</h3>
+          <ul>
+            <li class="fragment"><a href="https://auth0.com/blog/webpack-a-gentle-introduction/" target="_blank">Webpack</a> is a flexible module bundler</li>
+            <ul>
+              <li class="fragment">combines <span class="code-text">*.js, *.ts, *.css, *.scss</span>, static assets and more into one or more bundles</li>
+            </ul>
+            <li class="fragment">Provide a <span class="code-text">webpack.config.js</span> file with the following info</li>
+            <ul>
+              <li class="fragment">entry point such as <span class="code-text">main.js</span></li>
+              <li class="fragment">output (<span class="text-code">dist/bundle.js</span>)</li>
+              <li class="fragment">loaders (module rules)</li>
+              <ul>
+                <li class="fragment"><a href="https://github.com/vuejs/vue-loader" target="_blank">vue-loader</a></li>
+                <li class="fragment"><a href="https://github.com/vuejs/vue-loader" target="_blank">sass-loader</a></li>
+                <li class="fragment"><a href="https://github.com/webpack-contrib/file-loader" target="_blank">file-loader</a></li>
+                <li class="fragment"><a href="https://github.com/babel/babel-loader" target="_blank">babel-loader</a> - transpiles es6+ code down to es5 for cross browser support</li>
+              </ul>
+              <li class="fragment">plugins - webpack supports a <a href="https://github.com/webpack-contrib/file-loader" target="_blank">rich plugin ecosystem</a></li>
+              <ul>
+                <li class="fragment"><a href="https://github.com/webpack-contrib/uglifyjs-webpack-plugin" target="_blank">uglify</a></li>
+              </ul>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="slides" id="esri-loader">
+          <h3>Using the ArcGIS JS API in Frameworks and Webpack</h3>
+          <ul>
+            <li class="fragment">The ArcGIS JavaScript API is dependant on Dojo's AMD loader, so you cannot <span class="code-text">npm install</span> the API and <span class="code-text">import</span> individual modules. Esri offers two solutions to work around this problem:</li>
+            <ul>
+              <li class="fragment"><a href="https://github.com/Esri/esri-loader" target="_blank">esri-loader</a> - small library to load JS API in non Dojo apps</li>
+              <ul>
+                <li class="fragment">can lazy load or pre-load the JS API, zero webpack config, supports all 3.x and 4.x versions, works in all frameworks and other bundlers such as
+                  <a href="https://rollupjs.org/guide/en" target="_blank">Rollup</a> or <a href="http://broccolijs.com/" target="_blank">Broccoli</a></li>
+              </ul>
+              <li class="fragment"><a href="https://github.com/Esri/arcgis-webpack-plugin" target="_blank">@arcgis/webpack-plugin</a> - plugin for webpack to use AMD loader to resolve ArcGIS modules</li>
+              <ul>
+                <li class="fragment">pros</li>
+                <ul>
+                  <li class="fragment">can use <span class="code-text">import</span> statements for esri-modules, lazy load</li>
+                </ul>
+              </ul>
+              <li class="fragment">cons</li>
+              <ul>
+                <li class="fragment">only works in webpack, requires config, won't work with < JS API 4.7</li>
+              </ul>
+            </ul>
+            <li class="fragment"><a href="https://community.esri.com/people/TWayson-esristaff/blog/2018/05/10/arcgiswebpack-plugin-vs-esri-loader" target="_blank">blog post</a></li>
+          </ul>
+
+        </section>
+      </section>
+
+      <section class="slides" id="questions">
+        <h2 style="margin-top: 10%;">Questions?</h2>
+        <ul>
+          <li><a href="https://github.com/Bolton-and-Menk-GIS/Geoprocessing-Services-JSAPI-2018" target="_blank">Github Repo</a> for this workshop</li>
+          <li>Email us</li>
+          <ul>
+            <li><a href="mailto:calebma@bolton-menk.com">Caleb Mackey</a></li>
+            <li><a href="mailto:natech@bolton-menk.com">Nate Christ</a></li>
+          </ul>
+        </ul>
+      </section>
+
     </div>
   </div>
 <div id="footer-wrapper">
@@ -102,7 +307,7 @@
     // - https://github.com/hakimel/reveal.js#configuration
     // - https://github.com/hakimel/reveal.js#dependencies
     Reveal.initialize({
-      width: '95%',
+      width: '85%',
       height: '97%',
       dependencies: [{
         src: 'reveal/plugin/markdown/marked.js'

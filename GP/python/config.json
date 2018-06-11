@@ -1,16 +1,16 @@
 {
-  "temp_dir":"\\\\arcserver2\\wwwroot\\MN_GIS\\TempFiles",
-  "web_path":"http://gis.bolton-menk.com/MN_GIS/TempFiles",
+  "temp_dir":"\\\\some_server\\wwwroot\\TempFiles",
+  "web_path":"http://gis.your-domain.com/TempFiles",
   "templates":[
     {
       "name":"portrait",
-      "value":"\\\\arcserver1\\GIS\\_Resources\\ESRI\\Python\\BMI_Library\\GeoprocessingServices\\demo\\python\\templates\\template.mxd"
+      "value":"\\\\some_server\\demo\\python\\templates\\template.mxd"
     },
     {
       "name":"landscape",
-      "value":"\\\\arcserver1\\GIS\\_Resources\\ESRI\\Python\\BMI_Library\\GeoprocessingServices\\demo\\python\\templates\\template_landscape.mxd"
+      "value":"\\\\arcserver1\\some_server\\demo\\python\\templates\\template_landscape.mxd"
     }
   ],
-  "selection_lyr":"\\\\arcdev\\dev\\gis_lis\\GPServices_Workshop_2016\\GP\\python\\templates\\data\\SelectedParcel.lyr",
+  "selection_lyr":"\\\\some_server\\demo\\templates\\data\\SelectedParcel.lyr",
   "clean_dirs":true
 }

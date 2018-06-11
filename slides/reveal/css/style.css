@@ -46,10 +46,6 @@
   font-size: 30pt;
 }
 
-.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
-  text-transform: none !important;
-}
-
 #footer-wrapper{
   position: absolute;
   left: 0px;
@@ -111,23 +107,9 @@
   font-size: 0.9em;
 }
 
-.bold {
-  font-weight: bold !important;
-  color: yellow;
-}
-
 .code-text {
-  font-family: monaco, Consolas, "Lucida Console", monospace !important;
-  color: gold;
-  font-size: 90% !important;
-  background-color: #e8e8e85e;
-  box-shadow: -3px 0 0 #e8e8e85e, 3px 0 0 #e8e8e85e;
+  font-family: "Courier New", Courier, monospace !important;
 }
-
-.code{
-  max-width: 75%;
-}
-
 
 /* overwrite default blue */
 .reveal .progress span{
@@ -162,7 +144,7 @@
 .reveal .controls .navigate-down.enabled:hover {
   border-top-color: #8dcffc; }
 
-.reveal pre {
+.reveal pre code{
   font-size: 0.7em !important;
   max-height: 490px !important;
 }
