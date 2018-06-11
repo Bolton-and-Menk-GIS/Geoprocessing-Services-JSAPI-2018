@@ -7,8 +7,11 @@
            :style="{'z-index':tasks.crash.visible?'0':'1'}"
            @evt_isOpen="isOpen('property_export')">
       <div slot="content" style="width: 100%; height: 100%; padding: 0 0 10px 0;">
-        <PropertyExport :disabled="tasks.property_export.state.disabled" :feature="tasks.property_export.feature"
-                        :configs="tasks.property_export.configs"></PropertyExport>
+        <PropertyExport :disabled="tasks.property_export.state.disabled"
+                        :feature="tasks.property_export.feature"
+                        :configs="tasks.property_export.configs">
+
+        </PropertyExport>
       </div>
     </Panel>
     <Panel
@@ -21,6 +24,7 @@
         <CrashTool :state="{active: tasks.crash.state.active, disabled: tasks.crash.state.disabled}"
                    :selected="tasks.crash.selected_field"
                    :buffer_distance.sync="tasks.crash.buffer_distance"
+                   :url="tasks.crash.url"
                    :crash_fields="tasks.crash.display_fields"
                    :buffers="tasks.crash.buffers"
                    @evt_draw-start="draw_start"
@@ -117,6 +121,7 @@
             // reference to extrude_data method when available
             extrude_data: null,
             // GP props to pass into @CrashTool component
+            url: Config.Tasks.crash.gp_url,
             buffer_distance: Config.Tasks.crash.buffer_distance,
             selected_field: Config.Tasks.crash.default_field,
             display_fields: Config.Tasks.crash.display_fields,
@@ -181,7 +186,7 @@
         this.tasks.crash.state.disabled = true;
 
         // UI state
-        this.tasks.crash.state.active = this.view.is2D?true:false;
+        this.tasks.crash.state.active = this.view.is2D ? true : false;
 
         // if 3d view active switch back to 2d
         this.view.is2D?false:this.switchView();
@@ -195,14 +200,21 @@
         this.tasks.crash.selected_field = field;
 
         // check if crash buffers is populated if so show crash 3d symbols
-        this.tasks.crash.buffers?this.tasks.crash.extrude_data(this.tasks.crash.current_selection, field, this.view.scene):false;
+        this.tasks.crash.buffers ? this.tasks.crash.extrude_data(this.tasks.crash.current_selection, field, this.view.scene) : false;
       },
       crash_task_complete(evt) { // :: crash task complete vue event handler (@evt_crash-gp-complete) :: \\
+        // switch scene to '3d' mode to show rendered symbology in 3d
         this.switchView('3d');
-        this.tasks.crash.state.disabled = true;
-        this.layers.intersections.visible = false;
+
+        // extrude data upon crash_task complete @Analysis module
         this.tasks.crash.current_selection = evt.results[0].value;
         this.tasks.crash.extrude_data(evt.results[0].value, this.tasks.crash.selected_field, this.view.scene);
+
+        // disable run button as there is no longer a selection
+        this.tasks.crash.state.disabled = true;
+
+        // hide intersections
+        this.layers.intersections.visible = false;
       }
     },
     mounted() {

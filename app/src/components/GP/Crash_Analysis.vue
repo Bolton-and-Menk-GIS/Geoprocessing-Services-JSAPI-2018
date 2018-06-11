@@ -7,7 +7,7 @@
     <b-form-select class="dropdown" v-model="selected" :options="crash_fields" @change="dropdown_update"></b-form-select>
     <div style="display:flex;">
     <i class="fas fa-pen-square draw" :class="{active:state.active}" @click="drawStart"></i>
-    <geoprocessor class="gp-wrapper" :url="gpUrl" :params="params" :enabled="!state.disabled" @task-complete="taskComplete"></geoprocessor>
+    <geoprocessor class="gp-wrapper" :url="url" :params="params" :enabled="!state.disabled" @task-complete="taskComplete"></geoprocessor>
     </div>
     </div>
 </template>
@@ -20,13 +20,11 @@
   Vue.use(FormSelect);
 
   export default {
-    props: ['buffers', 'buffer_distance', 'selected', 'crash_fields', 'state'],
+    props: ['buffers', 'buffer_distance', 'selected', 'crash_fields', 'state', 'url'],
     name: "crash_tool",
     components:{Slider, Geoprocessor},
     data(){
       return{
-        // active: false,
-        gpUrl: 'https://gis.bolton-menk.com/bmigis/rest/services/AGOL_MARKETING/CrashSummary/GPServer/CrashSummary',
         distance: 100,
         step: 50,
         range:{
