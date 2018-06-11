@@ -27,6 +27,7 @@
       }
     },
     "crash":{
+      "gp_url":"https://gis.bolton-menk.com/bmigis/rest/services/AGOL_MARKETING/CrashSummary/GPServer/CrashSummary",
       "buffer_distance": 300,
       "default_field": "PROPDMG",
       "display_fields": [{
