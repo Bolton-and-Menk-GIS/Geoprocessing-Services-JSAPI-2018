@@ -18,15 +18,14 @@ const init = new Promise((resolve, reject) => {
 
 const Select = {
   init: function(view) {
-    this.view = view;
     const sketchViewModel = new ArcGISModules.SketchViewModel({
-      view: this.view,
+      view: view,
       symbol: symbols.draw
     });
     return sketchViewModel;
   },
 
-  // getselection call from Scene \\
+  // getselection call from add() function in @Scene
   async makeSelection(geometry, url, buffer_distance){
     // normalize ArcGIS Module variable names
     const {QueryTask, Query, geometryEngine } = ArcGISModules;
@@ -39,13 +38,13 @@ const Select = {
         return graphic;
       };
 
-    // set query operation \\
+    // set query operation
     async function query(url){
-      // initialize queryTask \\
+      // initialize queryTask
       const queryTask = new QueryTask({
         url: url
       });
-      // initialize query \\
+      // initialize query
       const query = new Query();
       query.returnGeometry = true;
       query.outFields = ["*"];
@@ -53,14 +52,14 @@ const Select = {
       return await queryTask.execute(query);
     }
 
-    // run query \\
+    // run query
     let results = await query(url);
 
-    // create graphics object which is ultimately returned in makeSelection() call \\
+    // create graphics object which is ultimately returned in makeSelection() call
     const graphics = results.features.reduce((acc, ftr)=>{
         // push raw feature geometry into feature_geometries array for overall buffer area \\
         acc.feature_geometries.push(ftr.geometry);
-        // push raw graphics \\
+        // push graphics created for the individual point selections \\
         acc.selected_points.push((makeGraphic(ftr.geometry, ftr.attributes, symbols.pointSelection)));
         // create buffer geometries - used as input for buffer graphics \\
         const bufferGeometry = geometryEngine.geodesicBuffer(ftr.geometry, buffer_distance, 'feet');
@@ -72,7 +71,7 @@ const Select = {
         // push makegraphics for individual point buffers and push into buffered points array
         acc.buffered_point_graphics.push(makeGraphic(bufferGeometry,null, symbols.bufferSelection));
       return acc;
-    },{new_features: [], feature_geometries: [], selected_points: [], buffered_point_graphics: []});
+    },{feature_geometries: [], selected_points: [], new_features: [], buffered_point_graphics: []});
 
     const dissolve = geometryEngine.geodesicBuffer(graphics.feature_geometries, buffer_distance, 'feet', true);
     let full_buffer = makeGraphic(dissolve[0],null, symbols.bufferArea);
@@ -84,10 +83,17 @@ const Select = {
       fields: results.fields,
       geometryType: 'esriGeometryPolygon',
       spatialReference: results.spatialReference
-  };
+    };
 
-    // return created object back to Scene \\
-    return {graphics: {draw: makeGraphic(geometry), selected_points: graphics.selected_points, buffers: graphics.buffered_point_graphics, buffer: full_buffer}, featureset: featureSet};
+    // return created data structure object back to Scene \\
+    return {
+      graphics: {
+          selected_points: graphics.selected_points,
+          buffers: graphics.buffered_point_graphics,
+          buffer: full_buffer
+      },
+      featureset: featureSet
+    };
   }
 };
 

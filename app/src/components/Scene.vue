@@ -10,7 +10,6 @@
         <PropertyExport :disabled="tasks.property_export.state.disabled"
                         :feature="tasks.property_export.feature"
                         :configs="tasks.property_export.configs">
-
         </PropertyExport>
       </div>
     </Panel>
@@ -273,18 +272,20 @@
         // ::::::::::::::::::::::::::::::::::::::: \\
         // ::::::: ---- Popup Events ---- :::::::: \\
         // ::::::::::::::::::::::::::::::::::::::: \\
-          const {init: initAnalysis, Select, extrude_data} = Analysis;
-          this.view.scene.popup.watch('visible', (evt) => {
-            if (evt) {
+          this.view.scene.popup.watch('visible', (visible) => {
+            if (visible) {
               // set currently selected feature to property_export.params.feature property on vue data object \\
               this.tasks.property_export.feature = this.view.scene.popup.viewModel.selectedFeature;
 
               const oid = this.view.scene.popup.viewModel.selectedFeature.attributes.OBJECTID;
+
               // set webmap_json to property_export.params.webmap_json property on vue data object \\
               this.tasks.property_export.configs.webmap_json = WebMap_Json(this.view.scene, parcels, oid);
 
+              // when popup is visible enable run task button
               this.tasks.property_export.state.disabled = false;
             }else{
+              // when popup is no longer visible disable run task button
               this.tasks.property_export.state.disabled = true;
             }
           });
@@ -292,14 +293,17 @@
           this.view.scene.popup.on('trigger-action', (evt) => {
             // listen for trigger action (exportAction)
             if (evt.action.id === 'export-property-report') {
-              let popup = this.view.scene.popup;
+
+              // set trigger property on vue data object to true to programatically expand property card panel
               this.tasks.property_export.trigger = true;
+
               // assign selectedFeature attributes to property_export.params property on vue data object
+              let popup = this.view.scene.popup;
               this.tasks.property_export.feature = popup.viewModel.selectedFeature;
             }
           });
 
-
+          const {init: initAnalysis, Select, extrude_data} = Analysis;
           // :::::::::::::::::::::::::::::::::::::: \\
           // :::: ---- Scene Loaded Event ---- :::: \\
           // :::::::::::::::::::::::::::::::::::::: \\
@@ -313,7 +317,7 @@
             await initAnalysis;
 
             // instantiate sketchViewModel
-            // #SketchViewModel -- simplifies the process of adding temporary geometries to the MapView abstracts the work of sketching geometry types
+            // #SketchViewModel -- simplifies the process of adding temporary geometries to the MapView/SceneView abstracts the work of sketching geometry types
             let sketchViewModel = Select.init(view);
 
             // assign sketchViewModel instance to crash.draw property on vue instance - hoist access to draw_start event
@@ -328,14 +332,12 @@
               // destructure selection to assign graphics & featureset variables
               const {graphics, featureset} = selection;
 
-              hook.graphics = graphics;
-
               // add point buffers/overall buffer/point graphics graphics retrieved from makeSelection to map
               view.graphics.addMany(graphics.selected_points);
               view.graphics.addMany(graphics.buffers);
               view.graphics.add(graphics.buffer);
 
-              // assign featureset to gp_params.buffers on vue instance to pass into crashtool
+              // assign featureset to gp_params.buffers on vue data() object to pass into crashtool
               this.tasks.crash.buffers = featureset;
 
               // deactivate draw icon on selection
@@ -355,9 +357,9 @@
         // ::::::: Map/Scene View Events Closure :::::::: \\
 
 
-        // these internal functions need to be available to call from vue instance > attach to vue methods object
+        // extrude_data() function need to be available to call from vue instance assign to vue data() object > tasks.crash.extrude_data
         this.tasks.crash.extrude_data = extrude_data;
-        hook.sceneC = this;
+        hook.sceneComponent = this;
 
       }) // ESRI LOAD MODULE CLOSURE
     }
