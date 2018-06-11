@@ -1,0 +1,67 @@
+{
+  "Map":{
+    "initExtent": {"x": -10421708.415328179, "y": 5099056.351632001, "spatialReference": {"wkid": 102100}}
+  },
+  "Layers":{
+    "parcels": "https://gis.bolton-menk.com/metia/rest/services/DEMO/Des_Moines_Parcels/MapServer",
+    "intersections": "https://gis.bolton-menk.com/metia/rest/services/DEMO/Polk_CO_IA_Intersections/MapServer"
+  },
+  "Tasks":{
+    "property_export":{
+      "gp_url":"https://gis.bolton-menk.com/bmigis/rest/services/AGOL_MARKETING/ExportPropertyCard2/GPServer/ExportPropertyCard",
+      "element_map":{
+        "taxpayer_info": "{taxpayer_name}\r\n{taxpayer_addr}\r\n{taxpayer_csz}",
+        "property_addr": "{address}\r\n{city}, {state} {zip}",
+        "flt_building_sf": "{sf}",
+        "flt_gis_acres": "{gis_acres}",
+        "neighborhood": "{nbhd_assoc}",
+        "flt_deeded_acres": "{acres}",
+        "year_built": "{year_built}",
+        "pin": "{formatted_pin}",
+        "legal": "{legal}",
+        "cur_land_est": "{land_full}",
+        "cur_total_value": "{total_full}",
+        "parcel_class": "{class_desc}",
+        "cur_building_est": "{bldg_full}",
+        "disclaimer": "The data provided herewith is for reference purposes only.  It is not suitable for legal, engineering, surveying or other purposes.  Polk County does not guarantee the accuracy of the information contained herein.  This data is furnished on an as is basis and Polk County makes no representations or warranties, either expressed or implied, for the merchantability or fitness of the information provided for any purpose.  This disclaimer is provided pursuant to Iowa Statues 466.03 and the user of the data provided herein acknowledges that Polk County shall not be liable for any damages."
+      }
+    },
+    "crash":{
+      "buffer_distance": 300,
+      "default_field": "PROPDMG",
+      "display_fields": [{
+        "text": "Fatalities",
+        "value": "FATALITIES"
+      },
+        {
+          "text": "Injuries",
+          "value": "INJURIES"
+        },
+        {
+          "text": "Major Injury",
+          "value": "MAJINJURY"
+        },
+        {
+          "text": "Minor Injury",
+          "value": "MININJURY"
+        },
+        {
+          "text": "Unknown Injury",
+          "value": "UNKINJURY"
+        },
+        {
+          "text": "Property Damage",
+          "value": "PROPDMG"
+        },
+        {
+          "text": "Number of Vehicles",
+          "value": "VEHICLES"
+        },
+        {
+          "text": "Total Occupants",
+          "value": "TOCCUPANTS"
+        }
+      ]
+    }
+  }
+}

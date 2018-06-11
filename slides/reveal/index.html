@@ -1,139 +1,49 @@
-<!Doctype html>
+<!doctype html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="shortcut icon" href="//www.bolton-menk.com/sites/default/files/favicon-16x16.ico">
-  <title>Title</title>
+		<title>reveal.js</title>
 
-  <!-- <link rel="stylesheet" href="reveal/css/theme/black.css"> -->
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
 
-    <link rel="stylesheet" href="reveal/css/reveal.css">
-    <link rel="stylesheet" href="reveal/css/theme/league.css" id="theme">
-    <link rel="stylesheet" href="reveal/lib/css/zenburn.css">
-  <!-- Theme used for syntax highlighting of code -->
-  <link rel="stylesheet" href="reveal/lib/css/zenburn.css">
-    <link rel="stylesheet" href="css/style.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match(/print-pdf/gi) ? 'reveal/css/print/pdf.css' : 'reveal/css/print/paper.css';
-    document.getElementsByTagName('head')[0].appendChild(link);
-  </script>
-</head>
-
-<body>
-  <div class="reveal">
-    <div class="slides" style="width: 95% !important;">
-      <section class='cover'>
-				<h2 class="title">Using Geoprocessing Services with the ArcGIS JavaScript API</h2>
-
-        <p class="author">
-          Caleb Mackey & Nate Christ
-        </p>
-			</section>
-
-      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::: || WHAT IS A GP SERVICE? || ::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <section id="python-gp" data-background-transition="zoom">
-
-        <section id='slide2' class='slides slide2' data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
-            <h2 style='margin-bottom: 25px;'>What is a GeoProcessing Service?</h2>
-            <ul>
-              <li class="fragment">A Geoprocessing Service (GP Service) provides data management, conversion, and analytical capabilites through the ArcGIS REST API</li>
-              <li class='fragment'>A GP Service represents a published toolbox with a Python or ArcObjects based Script tool or model.</li>
-              <li class="fragment">This is useful because the client does not need to have ArcGIS Desktop installed because the process is ran by the ArcGIS Server in the backend via request made through HTTP protocol</li>
-              </ul>
-            </ul>
-        </section>
-
-        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-        <!-- ::::::::::::::::::::: || CREATING A GP SERVICE || ::::::::::::::::::::::: -->
-        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-        <section class='slides' data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
-          <h2>Creating a GP Service</h2>
-          <ul>
-            <li class="fragment">In order to create a GP Service, you must publish the results of tool that has been ran successfully in ArcMap/Catalog/ArcGIS Pro </li>
-            <ul>
-              <li class="fragment">ArcGIS Desktop:  After successfully running tool, open Geoprocessing Options > Results > right click tool result > Share As > Geoprocessing Service</li>
-            </ul>
-            <li class="fragment">This will create a toolbox locally on the server (<span class="code-text">arcgissystem/arcgisinput</span> folder) with a single tool inside.  The Python script will be copied here as well</li>
-          </ul>
-
-          <div>
-            <img class="fragment" src="./images/serviceInFolder.png" alt="">
-          </div>
-
-
-        </section>
-
-        <section class="slides" data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
-          <h2>Server-Side Python Script</h2>
-          <ul>
-            <li>During publishing, Esri uses an internal validation process to check file paths in variables to ensure they're registered with data store.</li>
-            <ul>
-              <li>before publishing a GP service, make sure any necessary file paths are available to the ArcGIS Server's Data Store</li>
-              <li>If any data is copied to the server, the <span class="code-text">'g_ESRI_variable_x'</span> is changed to that path on the local server</li>
-            </ul>
-          </ul>
-
-        </section>
-
-      </section>
-    </div>
-  </div>
-<div id="footer-wrapper">
-	<div id="footer">
-		<div class="green-bar">
-			<a href='http://www.bolton-menk.com' target='_blank'><img class="logo" src="images/BMI_Circle.png" alt=""></a>
-		</div>
-	</div>
-</div>
-  <script src="reveal/lib/js/head.min.js"></script>
-  <script src="reveal/js/reveal.js"></script>
-
-  <script>
-    // More info about config & dependencies:
-    // - https://github.com/hakimel/reveal.js#configuration
-    // - https://github.com/hakimel/reveal.js#dependencies
-    Reveal.initialize({
-      width: '95%',
-      height: '97%',
-      dependencies: [{
-        src: 'reveal/plugin/markdown/marked.js'
-      }, {
-        src: 'reveal/plugin/markdown/markdown.js'
-      }, {
-        src: 'reveal/plugin/notes/notes.js',
-        async: true
-      }, {
-        src: 'reveal/plugin/highlight/highlight.js',
-        async: true,
-        callback: function() {
-          hljs.initHighlightingOnLoad();
-        }
-      }]
-    });
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript">
-		    // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
-			var header = $('#header').html();
-			if ( window.location.search.match( /print-pdf/gi ) ) {
-		    Reveal.addEventListener( 'ready', function( event ) {
-		      $('.slide-background').append(header);
-		    });
-			}
-			else {
-		    $('div.reveal').append(header);
-			}
-  </script>
-</body>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>Slide 1</section>
+				<section>Slide 2</section>
+			</div>
+		</div>
 
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
 
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
 </html>

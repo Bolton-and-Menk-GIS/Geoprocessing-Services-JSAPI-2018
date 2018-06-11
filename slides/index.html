@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="shortcut icon" href="//www.bolton-menk.com/sites/default/files/favicon-16x16.ico">
-  <title>Using GP Services with the ArcGIS JavaScript API</title>
+  <title>Python Web Services</title>
 
   <!-- <link rel="stylesheet" href="reveal/css/theme/black.css"> -->
 
@@ -28,18 +28,28 @@
 
 <body>
   <div class="reveal">
-    <div class="slides" style="width: 95% !important;">
-      <section class='cover'>
-				<h2 class="title">Using Geoprocessing Services with the ArcGIS JavaScript API</h2>
+    <div class="slides">
 
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <!-- ::::::::::::::::: || COVER || ::::::::::::::::: -->
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+      <section class='cover'>
+        <h1 class="title" style="font-size: 50pt; margin-top:-15%">Using GeoProcessing Services with the ArcGIS JavaScript API</h1>
+        <p>
+          <!-- <h2 class="presentation-subtitle">Caleb Mackey & Nate Christ</h2> -->
+        </p>
         <p class="author">
           Caleb Mackey & Nate Christ
         </p>
-			</section>
+      </section>
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <!-- ::::::::::::::::: || COVER || ::::::::::::::::: -->
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::: -->
 
-      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::: || GP SERVICEES || ::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || GP SERVICEES || CM || :::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
       <section id="gp-section" data-background-transition="zoom">
 
         <section id='intro' class='slides slide2' data-transition="concave" data-background-transition="zoom" style="margin-top: 15px;">
@@ -213,15 +223,260 @@
       </section>
 
       <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::: || FRAMEWORKS || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || GP SERVICEES || :::::::::::::::::::::::::::::::::::: -->
       <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <section id="frameworks-section">
-        section.slides
-      </section>
 
-      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::: || ESRI LOADER AND WEBPACK || ::::::::::::::::::::::: -->
-      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <!-- :::::::::::::::::: || WEB APPLICATION FRAMEWORK STACK || NC ::::::::::::::::: -->
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <section id='webframeworks'>
+      <!-- ::::::::::::::: WEB FRAMEWORK TITLE ::::::::::::::::: --> 
+            <section id='webframeworks-title' class='slides' data-transition="convex" data-background-transition="zoom" style='margin-top: -50px'>
+              <h2>Web Application Frameworks</h2>
+            </section>
+      <!-- ::::::::::::::: WEB FRAMEWORK TITLE ::::::::::::::::: -->
+
+      <!-- ::::::::::::::: WEB FRAMEWORK INTRO ::::::::::::::::: -->
+          <section id='whatisit' data-transition="concave" data-background-transition="zoom" style='margin-top: -50px'>
+              <h2>What is it?</h2>
+              <ul>
+              	<ul>
+                <li class='fragment' type='disc' style='margin-bottom: 5px;'>Provides a standard way to build and deploy web applications</li>
+                <li class='fragment' type='disc' style='margin-bottom: 5px;'>Available in many different varieties</li>
+                <li class='fragment' type='disc' style='margin-bottom: 5px;'>Inversion of Control</li>
+	            	</ul>
+	            	<ul class='fragment'>
+	            	<li type='disc' style='margin-bottom: 5px;'>Framework Features</li>
+	               <ul style='font-size: 90%;'>
+	                <li type='circle'>Templating</li>
+	                <li type='circle'>Routing</li>
+	                <li type='circle'>State Management</li>
+	              	<li type='circle'>Data Fetching</li>
+	              	<li type='circle'>Scaffolding</li>
+	              	<li type='circle'>Web Services</li>
+                 </ul>
+               </ul>
+              </ul>
+          </section>
+      <!-- ::::::::::::::: WEB FRAMEWORK INTRO ::::::::::::::::: -->
+
+      <!-- ::::::::::::::: TELEMESS ::::::::::::::::: -->
+      	<section id='tele-mess' data-transition="convex" data-background-transition="zoom" style='margin-top: -50px'>
+      		<div class='top' style='display: flex;'>
+            <img style="margin-right: auto; margin-left: auto; height: 545px;" src='images/Telemess.jpg'/>
+        	</div>
+      	</section>
+      <!-- ::::::::::::::: TELEMESS ::::::::::::::::: -->
+
+      <!-- ::::::::::::::: FRAMEWORK BENEFITS ::::::::::::::::: -->
+          <section id='Benefits' data-transition="convex" data-background-transition="zoom" style='margin-top: -50px'>
+            <h2>Framework Benefits</h2>
+            <ul>
+	            <ul>
+	            	<li class='fragment' type='disc'>Modern frameworks utilize a virtual DOM</li>
+	            	<li class='fragment' type='disc'>DOM Interaction - A neccessary evil</li>
+	            	<li class='fragment' type='disc'>Data-driven vs DOM-driven UI Model</li>
+	            </ul>
+	            <ul class='fragment'>
+	            	<li type='disc'>Other benefits</li>
+	            	 <ul style='font-size: 80%;'>
+	                <li type='circle'>Structure</li>
+	                <li type='circle'>Rule Enforcement</li>
+	                <li type='circle'>Maintainability/Scalability</li>
+	              	<li type='circle'>Reusability</li>
+	              	<li type='circle'>Efficiency</li>
+	              	<li type='circle'>Faster Setup</li>
+                 </ul>
+	          	</ul>
+          </ul>
+          </section>
+      <!-- ::::::::::::::: FRAMEWORK BENEFITS ::::::::::::::::: -->
+
+      <!-- ::::::::::::::: FRAMEWORK TYPES ::::::::::::::::: -->
+      <section id='Framework-Types' data-transition="convex" data-background-transition="zoom" style='padding-top: 0; margin-top: -70px; padding-bottom: 10px;'>
+        <h2 style='margin-bottom: 55px;'>Types of Frameworks</h2>
+        <ul style='margin-bottom: 30px; margin-top: 20px; width: 100%;'/>
+      		<div class='top' style='display: flex; margin-bottom: 40px; margin-left: -140px; margin-right: -80px;'>
+            <img class='fragment' style='height: 115px; margin-left: -80px; background: none; border: none; box-shadow: none;' src='images/Ember.png'/>
+            <div style='margin-left: 50px;' class='fragment'>
+              <li style='font-size: 65%; width: 100%; padding-top: 20px; padding-right: 145px;'>Full Featured</li>
+              <li style='font-size: 65%; width: 100%;'>Most Structured</li>
+              <li style='font-size: 65%; width: 100%;'>Highly Opinionated</li>
+              <li style='font-size: 65%; width: 100%;'>Steep Learning Curve</li>
+            </div>
+            <img class='fragment' style='height: 165px; margin-left: 50px; background: none; border: none; box-shadow: none;' src='images/Angular.png'/>
+            <div style='margin-left: 65px;' class='fragment'>
+              <li style='font-size: 65%; padding-top: 20px;'>Full Featured</li>
+              <li style='font-size: 65%;'>Highly Structured</li>
+              <li style='font-size: 65%;'>TypeScript provides good best practices</li>
+              <li style='font-size: 65%; width: 120%;'>Steep Learning Curve</li>
+            </div>
+          </div>
+          <div class='top' style='display: flex; margin-left: -75px; margin-right: -90px;'>
+            <img class='fragment' style='height: 165px; margin-right: 65px; margin-left: -80px; background: none; border: none; box-shadow: none;' src='images/React.png'/>
+            <div style='margin-left: 15px;' class='fragment'>
+              <li style='font-size: 65%; padding-top: 20px;'>Most Popular</li>
+              <li style='font-size: 65%;'>Less Structured</li>
+              <li style='font-size: 65%; width: 105%;'>View Layer Focused</li>
+              <li style='font-size: 65%;'>Versatile</li>
+            </div>
+            <img class='fragment' style='height: 165px; margin-right: 45px; margin-left: 47px; background: none; border: none; box-shadow: none;' src='images/Vue.png'/>
+            <div style='margin-left: 15px;' class='fragment'>
+              <li style='font-size: 65%; padding-top: 20px;'>Approachable </li>
+              <li style='font-size: 65%; width: 105%;'>Lightweight & Performant</li>
+              <li style='font-size: 65%;'>View Layer Focused</li>
+              <li style='font-size: 65%;'>Versatile</li>
+            </div>
+          </div>
+        </ul>
+      </section>
+      <!-- ::::::::::::::: FRAMEWORK TYPES ::::::::::::::::: -->
+      </section>
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <!-- :::::::::::::::::: || WEB APPLICATION FRAMEWORK STACK || NC ::::::::::::::::: -->
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        
+
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- :::::::::::::::::::::::::::::: || VUEJS STACK || :::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+      <section id="vuejs-stack">
+      <!-- ::::::::::::::: VUE TITLE ::::::::::::::: -->
+        <section id='vue-title' data-transition="convex" data-background-transition="zoom" style='margin-top: -50px'>
+          <div>
+            <img style="margin-right: auto; margin-left: auto; background: none; border: none; box-shadow: none;" src='images/Vue.png'/>
+            <div>
+            Vue.js
+          </div>
+          </div>
+        </section>
+      <!-- ::::::::::::::: VUE TITLE ::::::::::::::: -->
+
+      <!-- ::::::::::::::: VUE INSTANCE ::::::::::::::::: -->
+        <section id='vue-instance' data-transition="convex" data-background-transition="zoom" style='padding-top: 0; padding-bottom: 10px; margin-top: -20px'>
+          <h2 style='margin-bottom: 35px;'>Vue Instance</h2>
+
+          <div class='fragment'>
+              <pre><code class="hljs html" data-trim>
+              <!-- HTML -->
+              <div id="app">
+                <p>{{ text }}</p>
+              </div>
+              </code></pre>
+
+
+          <pre><code class="hljs javascript" data-trim>
+            // JavaScript
+            new Vue({
+              el: '#app', 
+              data: {
+                text: 'Welcome to ITAG!'
+              }
+            });
+          </code></pre>
+          </div>
+
+        </section>
+      <!-- ::::::::::::::: VUE INSTANCE ::::::::::::::::: -->
+
+      <!-- ::::::::::::::: VUE INSTANCE DEMO ::::::::::::::: -->
+        <section id='vue-title' data-transition="convex" data-background-transition="zoom" style='margin-top: -50px'>
+          <div class='top'>
+            <h2>Vue Instance Demo</h2>
+          </div>
+        </section>
+      <!-- ::::::::::::::: VUE INSTANCE DEMO ::::::::::::::: -->
+
+      <!-- ::::::::::::::::: COMPONENT :::::::::::::::::: -->
+        <section id='component' data-transition="convex" data-background-transition="zoom" style='padding-top: 0; padding-bottom: 10px; margin-top: -20px'>
+          <h2 style='margin-bottom: 35px;'>Vue Component</h2>
+          <div class='fragment'>
+              <pre><code class="hljs html" data-trim>
+                <!-- HTML -->
+                <div id="sample-component">
+                  <button-counter></button-counter>
+                </div>
+              </code></pre>
+
+
+          <pre><code class="hljs javascript" data-trim>
+            // JavaScript
+            // COMPONENT DEFINITION - called button-counter
+            Vue.component('button-counter', {
+              template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>',
+              data: function () {
+                return {
+                  count: 0
+                }
+              }
+            });
+
+            // VUE INSTANCE
+            new Vue({ el: '#sample-component' })
+          </code></pre>
+          </div>
+        </section>
+      <!-- ::::::::::::::::: COMPONENT :::::::::::::::::: -->
+
+
+      <!-- ::::::::::::::: VUE COMPONENT DEMO ::::::::::::::: -->
+        <section id='vue-title' data-transition="convex" data-background-transition="zoom" style='margin-top: -50px'>
+          <div class='top'>
+            <h2>Vue Component Demo</h2>
+          </div>
+        </section>
+      <!-- ::::::::::::::: VUE COMPONENT DEMO ::::::::::::::: -->
+      
+      <!-- ::::::::::::::: VUE FILE :::::::::::::::::::::::: -->
+        <section id='vue-file' data-transition="convex" data-background-transition="zoom" style='padding-top: 0; padding-bottom: 10px; margin-top: -20px'>
+          <h2 style='margin-bottom: 35px; margin-top: -10%;'>.vue File</h2>
+          <div class='fragment'>
+              <pre><code class="hljs javascript" data-trim style="max-height: 600px;">
+                <!-- template -->
+                <template>
+                  <!-- injected into parent component -->
+                  <div>
+                    <p>HTML Structure</p>
+                    <div class="someClass">{{ text }}</div>
+                  </div>
+                  <!-- injected into parent component -->
+                </template>
+
+                <script>
+                  // component definition
+                  // export default{
+                  //   data(){
+                  //     return {
+                  //       text: 'Welcome to ITAG!'
+                  //     }
+                  //   }
+                  // }
+                </script>
+
+                <style>
+                /* nested component style definition */ 
+                  .someClass{
+                    color: red;
+                    background-color: black;
+                    height: 500px;
+                    width: 500px;
+                  }
+                </style>
+          </code></pre>
+          </div>
+        </section>
+      <!-- ::::::::::::::: VUE FILE :::::::::::::::::::::::: -->
+      </section> 
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- :::::::::::::::::::::::::::::: || VUEJS STACK || :::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || ESRI LOADER AND WEBPACK || CM || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
       <section id="final-section">
 
         <section class="slides" id="webpack">
@@ -237,9 +492,7 @@
               <li class="fragment">output (<span class="text-code">dist/bundle.js</span>)</li>
               <li class="fragment">loaders (module rules)</li>
               <ul>
-                <li class="fragment"><a href="https://github.com/vuejs/vue-loader" target="_blank">vue-loader</a></li>
-                <li class="fragment"><a href="https://github.com/vuejs/vue-loader" target="_blank">sass-loader</a></li>
-                <li class="fragment"><a href="https://github.com/webpack-contrib/file-loader" target="_blank">file-loader</a></li>
+                <li class="fragment"><a href="https://github.com/vuejs/vue-loader" target="_blank">vue-loader</a>, <a href="https://github.com/vuejs/vue-loader" target="_blank">sass-loader</a>, <a href="https://github.com/webpack-contrib/file-loader" target="_blank">file-loader</a></li>
                 <li class="fragment"><a href="https://github.com/babel/babel-loader" target="_blank">babel-loader</a> - transpiles es6+ code down to es5 for cross browser support</li>
               </ul>
               <li class="fragment">plugins - webpack supports a <a href="https://github.com/webpack-contrib/file-loader" target="_blank">rich plugin ecosystem</a></li>
@@ -252,7 +505,7 @@
 
         <section class="slides" id="esri-loader">
           <h3>Using the ArcGIS JS API in Frameworks and Webpack</h3>
-          <ul>
+          <ul style="width: 120%; margin-left: -8%;">
             <li class="fragment">The ArcGIS JavaScript API is dependant on Dojo's AMD loader, so you cannot <span class="code-text">npm install</span> the API and <span class="code-text">import</span> individual modules. Esri offers two solutions to work around this problem:</li>
             <ul>
               <li class="fragment"><a href="https://github.com/Esri/esri-loader" target="_blank">esri-loader</a> - small library to load JS API in non Dojo apps</li>
@@ -278,9 +531,17 @@
         </section>
       </section>
 
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || ESRI LOADER AND WEBPACK || CM || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || QUESTIONS || CM || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
       <section class="slides" id="questions">
-        <h2 style="margin-top: 10%;">Questions?</h2>
-        <ul>
+        <h2 style="margin-top: 30%; font-size: 80pt">Questions?</h2>
+        <ul style="font-size: 35pt">
           <li><a href="https://github.com/Bolton-and-Menk-GIS/Geoprocessing-Services-JSAPI-2018" target="_blank">Github Repo</a> for this workshop</li>
           <li>Email us</li>
           <ul>
@@ -289,15 +550,20 @@
           </ul>
         </ul>
       </section>
+      
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::: || QUESTIONS || CM || ::::::::::::::::::::::: -->
+      <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 
     </div>
   </div>
-<div id="footer-wrapper">
-	<div id="footer">
-		<div class="green-bar">
-			<a href='http://www.bolton-menk.com' target='_blank'><img class="logo" src="images/BMI_Circle.png" alt=""></a>
-		</div>
-	</div>
+  <div id="footer-wrapper">
+  <div id="footer">
+
+    <div class="green-bar">
+      <a href='http://www.bolton-menk.com' target='_blank'><img class="logo" src="images/BMI_Circle.png" alt=""></a>
+    </div>
+  </div>
 </div>
   <script src="reveal/lib/js/head.min.js"></script>
   <script src="reveal/js/reveal.js"></script>
@@ -307,8 +573,8 @@
     // - https://github.com/hakimel/reveal.js#configuration
     // - https://github.com/hakimel/reveal.js#dependencies
     Reveal.initialize({
-      width: '85%',
-      height: '97%',
+      width: '45%',
+      height: '100%',
       dependencies: [{
         src: 'reveal/plugin/markdown/marked.js'
       }, {
@@ -324,19 +590,19 @@
         }
       }]
     });
-		</script>
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script type="text/javascript">
-		    // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
-			var header = $('#header').html();
-			if ( window.location.search.match( /print-pdf/gi ) ) {
-		    Reveal.addEventListener( 'ready', function( event ) {
-		      $('.slide-background').append(header);
-		    });
-			}
-			else {
-		    $('div.reveal').append(header);
-			}
+    </script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript">
+        // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+      var header = $('#header').html();
+      if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+          $('.slide-background').append(header);
+        });
+      }
+      else {
+        $('div.reveal').append(header);
+      }
   </script>
 </body>
 
