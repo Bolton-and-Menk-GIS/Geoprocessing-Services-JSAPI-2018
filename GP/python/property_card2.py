@@ -75,7 +75,6 @@ def export_property_card(webmap_json, feature, report_config, pdf_res=100, templ
 
 
     # update map elements with values
-    print json.dumps(feature['attributes'], indent=2)
     for elm_name, elm in elms.iteritems():
         if elm_name.startswith('flt_') or elm_name.startswith('cur'):
 
@@ -144,9 +143,10 @@ def export_property_card(webmap_json, feature, report_config, pdf_res=100, templ
 if __name__ == '__main__':
 
     # GP tool
-    args = [arcpy.GetParameter(i) for i in range(arcpy.GetArgumentCount()-1)] # last argument is output variable
+    argCount = arcpy.GetArgumentCount()
+    args = [arcpy.GetParameter(i) for i in range(argCount-1)] # last argument is output variable
     url = export_property_card(*args)
-    arcpy.SetParameter(arcpy.GetArgumentCount()-1, url)
+    arcpy.SetParameter(argCount-1, url)
 
 ##    # testing
 ##    fold = os.path.join(os.path.dirname(__file__), 'tests')
