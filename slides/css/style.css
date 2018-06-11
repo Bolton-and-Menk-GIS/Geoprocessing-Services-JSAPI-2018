@@ -13,7 +13,7 @@
  .reveal h1, .reveal h2, .reveal h3, .reveal h6 {
       /*font-family: 'Bangers', cursive;*/
     font-family: 'Play', sans-serif;
-    /*font-size: 2.5em;*/
+    text-transform: none !important;
   }
 
   .reveal h2, .reveal h3, .reveal h6 {
@@ -23,15 +23,15 @@
 
 .reveal .slides{
   bottom: 15px;
-  top: 15px;
+  top: 3%;
 }
 
 .reveal .slides ul li{
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
   .reveal .slides .cover .title{
-    font-size: 2.5em;
+    font-size: 2.25em;
   }
 
   .reveal .slides .cover .subtitle{
@@ -92,7 +92,7 @@
 }
 
 .title{
-  font-size: 1.75em;
+  font-size: 2em;
 }
 
 .text-lrg{
@@ -107,9 +107,41 @@
   font-size: 0.9em;
 }
 
-.code-text {
-  font-family: "Courier New", Courier, monospace !important;
+#communication .comm{
+    background-color: white;
+    border-radius: 5px;
+    width: 115%;
+    margin-left: -8%;
+    margin-top: 5%;
 }
+
+#communication .comm .top{
+  display: flex;
+  justify-content: center; 
+}
+
+#communication .comm .bottom{
+  display: flex;
+  justify-content: center;
+  margin-left: 80px;
+}
+
+#communication .comm .top>img{
+  height: 155px;
+  border: none; 
+  background: none; 
+  box-shadow: none;
+}
+
+#communication .comm .bottom>img{
+  border: none; 
+  background: none; 
+  box-shadow: none;
+  height: 130px;
+}
+
+.reveal li {font-size: 85%; }
+.reveal li li li li {font-size: 90%; }
 
 /* overwrite default blue */
 .reveal .progress span{
@@ -144,10 +176,10 @@
 .reveal .controls .navigate-down.enabled:hover {
   border-top-color: #8dcffc; }
 
-.reveal pre code{
-  font-size: 0.7em !important;
-  max-height: 490px !important;
+.code-text {
+  font-family: monaco, Consolas, "Lucida Console", monospace !important;
+  color: gold;
+  font-size: 90% !important;
+  background-color: #e8e8e85e;
+  box-shadow: -3px 0 0 #e8e8e85e, 3px 0 0 #e8e8e85e;
 }
-
-.reveal li {font-size: 90%; }
-.reveal li li li li {font-size: 90%; }
