@@ -1,0 +1,8 @@
+v.07 
+ - Intersections
+
+v.06
+ - Lidar Struggles
+
+v0.5
+ -3d struggles
