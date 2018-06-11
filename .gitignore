@@ -119,3 +119,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 
+# app
+prev/
+scratch/
