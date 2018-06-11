@@ -21,7 +21,7 @@ import json
 import sys
 
 # network share
-sys.path.append(r'\\arcserver1\GIS\_Resources\ESRI\Python\BMI_Library\GeoprocessingServices\demo\python')
+sys.path.append(r'\\some_server\demo\python')
 from utils import featureToPointPolyfill
 
 DEFAULT_CRASH_URL = 'https://gis.iowadot.gov/public/rest/services/Traffic_Safety/Crash_Data/MapServer/0'
