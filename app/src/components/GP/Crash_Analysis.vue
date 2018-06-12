@@ -7,7 +7,12 @@
           <b-form-select class="dropdown" v-model="selected" :options="crash_fields" @change="dropdown_update"></b-form-select>
         <div style="display:flex;">
           <i class="fas fa-pen-square draw" :class="{active:state.active}" @click="drawStart"></i>
-           <geoprocessor class="gp-wrapper" :url="url" :params="params" :enabled="!state.disabled" @task-complete="taskComplete"></geoprocessor>
+           <geoprocessor class="gp-wrapper"
+                         :url="url"
+                         :params="params"
+                         :enabled="!state.disabled"
+                         @task-complete="taskComplete">
+           </geoprocessor>
       </div>
     </div>
 </template>

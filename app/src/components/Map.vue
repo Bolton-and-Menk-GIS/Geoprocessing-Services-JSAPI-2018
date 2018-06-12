@@ -3,12 +3,30 @@
     <div id="viewDiv"></div>
     <Panel :direction="'Right'" @evt_isOpen="isOpen('property_export')" :trigger="tasks.property_export.trigger" :label="'Export'" :style="{'z-index':tasks.crash.visible?'0':'1'}">
       <div slot="content" style="width: 100%; height: 100%; padding: 0 0 10px 0;">
-        <PropertyExport :disabled="tasks.property_export.state.disabled" :feature="tasks.property_export.feature" :configs="tasks.property_export.configs"></PropertyExport>
+        <PropertyExport
+                :disabled="tasks.property_export.state.disabled"
+                :feature="tasks.property_export.feature"
+                :configs="tasks.property_export.configs">
+
+        </PropertyExport>
       </div>
     </Panel>
-    <Panel :direction="'Right'" @evt_isOpen="isOpen()" :class_override="{panel: 'panel', tab: 'tab'}" :style="{'z-index':tasks.crash.visible?'1':'0'}" :label="'Crash'">
+    <Panel :direction="'Right'"
+           @evt_isOpen="isOpen()"
+           :class_override="{panel: 'panel', tab: 'tab'}"
+           :style="{'z-index':tasks.crash.visible?'1':'0'}"
+           :label="'Crash'">
       <div slot="content" style="width: 100%; height: 100%; padding: 0 0 10px 0;">
-        <CrashTool :state="{active: tasks.crash.state.active, disabled: tasks.crash.state.disabled}" :selected="tasks.crash.selected_field" :buffer_distance.sync="tasks.crash.buffer_distance" :crash_fields="tasks.crash.display_fields" :buffers="tasks.crash.buffers" @evt_draw-start="draw_start" @evt_dropdown-field-changed="crash_task_update" @evt_crash-gp-complete="crash_task_complete"></CrashTool>
+        <CrashTool :state="{active: tasks.crash.state.active, disabled: tasks.crash.state.disabled}"
+                   :selected="tasks.crash.selected_field"
+                   :buffer_distance.sync="tasks.crash.buffer_distance" :
+                   crash_fields="tasks.crash.display_fields"
+                   :buffers="tasks.crash.buffers"
+                   @evt_draw-start="draw_start"
+                   @evt_dropdown-field-changed="crash_task_update"
+                   @evt_crash-gp-complete="crash_task_complete">
+
+        </CrashTool>
       </div>
     </Panel>
   </div>
@@ -53,15 +71,10 @@
         config: {
           view: {
             initExtent: Config.Map.initExtent, // DES MOINES
-            // initExtent: {x: -10253568.62874889, y: 5907956.409385364, spatialReference: {wkid: 102100}}, // DULUTH
-            // initExtent: {x: -8354625.242281401, y: 4641993.932138052, z: 500, spatialReference: {wkid: 3857}},
-            // initExtent: {x: -10377194.866578178, y: 5617375.123604663, z: 500, spatialReference: {wkid: 102100}},
             container: "viewDiv"
           },
           urls: {
-            // parcels: '//gis.bolton-menk.com/bmigis/rest/services/MN_GIS/Duluth_Parcels/MapServer',
             parcels: Config.Layers.parcels,
-            // parcels: '//gis.bolton-menk.com/bmigis/rest/services/TEST/Des_Moines_Parcels/MapServer',
             intersections: Config.Layers.intersections
           }
         },

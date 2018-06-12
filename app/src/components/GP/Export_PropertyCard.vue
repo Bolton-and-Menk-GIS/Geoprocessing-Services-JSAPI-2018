@@ -5,7 +5,12 @@
     <Slider :value.sync="resolution" :step="step" :min="range.min" :max="range.max"></Slider>
     <span class="label" style="padding: 5px 85px;">Orientation</span>
         <b-form-select class="dropdown" v-model="orientation" :options="orientationOptions" style="cursor: pointer;"></b-form-select>
-    <geoprocessor :url="configs.url" :params="params" :enabled="!disabled" :options="gpOptions"></geoprocessor>
+    <geoprocessor :url="configs.url"
+                  :params="params"
+                  :enabled="!disabled"
+                  :options="gpOptions">
+
+    </geoprocessor>
   </div>
 </template>
 
@@ -51,10 +56,6 @@
           WebMap: JSON.stringify(this.configs.webmap_json),
           Template: this.orientation
         }
-      },
-
-      enabled: function(){
-        return true;//(this.resolution && this.orientation); //may want to handle this yourself???
       }
     },
     mounted(){
