@@ -1,0 +1,22 @@
+<html>
+<!-- cdn call to the vue library -->
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+	<p :title='title'>{{ message }}</p>
+	<div :style='{color: "red"}'>{{ submessage }}</div>
+</div>
+
+<script>
+	// vue instance
+	new Vue({
+	  el: '#app', // attach vue instance to DOM element
+	  data: { // data object which binds directly to DOM element
+	  	message: 'Welcome to ITAG!',
+	  	submessage: 'Thanks for attending the GP JS Workshop!',
+	  	title: "ITAG GP JS Workshop 2018!"
+	  }
+	});
+
+</script>
+</html>

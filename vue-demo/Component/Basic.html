@@ -1,0 +1,25 @@
+<html>
+<script src="https://unpkg.com/vue"></script>
+
+<!-- HTML -->
+<div id="sample-component">
+  <button-counter></button-counter>
+</div>
+
+<script>
+  // COMPONENT DEFINITION - called button-counter
+  Vue.component('button-counter', {
+    template: '<div><button v-on:click="count++">You clicked me {{ count }} times.</button></div>',
+    data: function() {
+      return {
+        count: 0
+      }
+    }
+  });
+
+
+  // VUE INSTANCE
+  new Vue({el: '#sample-component'});
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<html>
+<script src="https://unpkg.com/vue"></script>
+
+<!-- HTML -->
+<div id="sample-component">
+  <!-- pass in 'someText' as :prop & handle evt_handle-click in handleClick-->
+  <props-events :prop='someText' @evt_handle-click="handle_evt"></props-events>
+</div>
+
+<script>
+  // COMPONENT DEFINITION - props-events
+  Vue.component('props-events', {
+    template: '<div><div @click="handle_click">{{ prop }}</div></div>',
+    props: ['prop'],
+    data: function() {
+      return {
+        component_data: 'Data for the parent'
+      }
+    },
+     methods:{
+      handle_click(){
+        alert('Alert in child (sample-component)');
+        this.$emit('evt_handle-click', this.component_data);
+      }
+    }
+  });
+
+
+  // VUE INSTANCE
+  new Vue({
+    el: '#sample-component',
+    data: function(){
+      return{
+         someText: "Here's some text to render"     
+       }
+    },
+    methods:{
+      handle_evt(evt){
+        alert('Alert in parent (Vue Instance) - ' + ' ' + evt);
+      }
+    }
+  });
+
+</script>
+
+</html>

@@ -8,18 +8,18 @@
   font-family: 'Open Sans', sans-serif;
   font-family: 'Timmana', sans-serif;*/
   font-family: 'Play', sans-serif;
-}
+  }
 
-.reveal h1, .reveal h2, .reveal h3, .reveal h6 {
-  /*font-family: 'Bangers', cursive;*/
-  font-family: 'Play', sans-serif;
-  text-transform: none !important;
-}
+ .reveal h1, .reveal h2, .reveal h3, .reveal h6 {
+      /*font-family: 'Bangers', cursive;*/
+    font-family: 'Play', sans-serif;
+    text-transform: none !important;
+  }
 
-.reveal h2, .reveal h3, .reveal h6 {
+  .reveal h2, .reveal h3, .reveal h6 {
   text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15);
   font-size: 1.5em;
-}
+  }
 
 .reveal .slides{
   bottom: 15px;
@@ -30,17 +30,17 @@
   margin-bottom: 2px;
 }
 
-.reveal .slides .cover .title{
-  font-size: 2.25em;
-}
+  .reveal .slides .cover .title{
+    font-size: 2.25em;
+  }
 
-.reveal .slides .cover .subtitle{
-  font-size: 1.25em;
-}
+  .reveal .slides .cover .subtitle{
+    font-size: 1.25em;
+  }
 
-.reveal .slides .cover .author{
-  font-size: 1.25em;
-}
+  .reveal .slides .cover .author{
+      font-size: 1.25em;
+  }
 
 .reveal .subtitle{
   font-size: 30pt;
@@ -108,16 +108,16 @@
 }
 
 #communication .comm{
-  background-color: white;
-  border-radius: 5px;
-  width: 115%;
-  margin-left: -8%;
-  margin-top: 5%;
+    background-color: white;
+    border-radius: 5px;
+    width: 115%;
+    margin-left: -8%;
+    margin-top: 5%;
 }
 
 #communication .comm .top{
   display: flex;
-  justify-content: center;
+  justify-content: center; 
 }
 
 #communication .comm .bottom{
@@ -128,14 +128,14 @@
 
 #communication .comm .top>img{
   height: 155px;
-  border: none;
-  background: none;
+  border: none; 
+  background: none; 
   box-shadow: none;
 }
 
 #communication .comm .bottom>img{
-  border: none;
-  background: none;
+  border: none; 
+  background: none; 
   box-shadow: none;
   height: 130px;
 }
@@ -178,7 +178,6 @@
 
 .code-text {
   font-family: monaco, Consolas, "Lucida Console", monospace !important;
-  display: inline-block !important;
   color: gold;
   font-size: 90% !important;
   background-color: #e8e8e85e;
