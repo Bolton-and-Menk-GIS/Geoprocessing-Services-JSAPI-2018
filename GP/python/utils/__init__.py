@@ -20,36 +20,6 @@ import operator
 import datetime
 import json
 import time
-from dateutil.relativedelta import relativedelta
-
-# constants
-# esri fields
-OID = 'esriFieldTypeOID'
-SHAPE = 'esriFieldTypeGeometry'
-GLOBALID = 'esriFieldTypeGlobalID'
-DATE_FIELD = 'esriFieldTypeDate'
-TEXT_FIELD = 'esriFieldTypeString'
-FLOAT_FIELD = 'esriFieldTypeSingle'
-DOUBLE_FIELD = 'esriFieldTypeDouble'
-SHORT_FIELD = 'esriFieldTypeSmallInteger'
-LONG_FIELD = 'esriFieldTypeInteger'
-GUID_FIELD = 'esriFieldTypeGUID'
-RASTER_FIELD = 'esriFieldTypeRaster'
-BLOB_FIELD = 'esriFieldTypeBlob'
-SQL_TYPE = 'sqlType'
-SQL_TYPE_OTHER = 'sqlTypeOther'
-
-# field map to arcpy fields
-FTYPES = {
-    DATE_FIELD:'DATE',
-    TEXT_FIELD:'TEXT',
-    FLOAT_FIELD:'FLOAT',
-    DOUBLE_FIELD :'DOUBLE',
-    SHORT_FIELD:'SHORT',
-    LONG_FIELD:'LONG',
-    GUID_FIELD:'GUID',
-    GLOBALID: 'GUID'
-}
 
 # deltas
 deltas = ['days', 'months', 'years', 'weeks', 'hours', 'minutes', 'seconds']
@@ -82,7 +52,7 @@ def remove_folders(path, exclude=[], older_than=True, test=False, subdirs=True, 
         time_args['days'] = 1
 
     # get removal date and operator
-    remove_after = datetime.datetime.now() - relativedelta(**time_args)
+    remove_after = datetime.datetime.now() - datetime.timedelta(**time_args)
     op = operator.lt
     if not older_than:
         op = operator.gt
@@ -154,7 +124,7 @@ def remove_files(path, exclude=[], older_than=True, test=False, subdirs=False, *
         time_args['days'] = 1
 
     # get removal date and operator
-    remove_after = datetime.datetime.now() - relativedelta(**time_args)
+    remove_after = datetime.datetime.now() - datetime.timedelta(**time_args)
     op = operator.lt
     if not older_than:
         op = operator.gt
