@@ -142,7 +142,7 @@ export default {
         }]
       },
       operationalLayers: [{
-        opacity: parcels.sublayers.items[0].layer.opacity,
+        opacity: 0.5, //parcels.sublayers.items[0].layer.opacity,
         title: parcels.title || 'Parcels',
         url: parcels.sublayers.items[0].url,
         selectionSymbol: {
@@ -157,9 +157,9 @@ export default {
             "type": "esriSLS",
             "color": [
               255,
-              255,
               0,
-              255
+              0,
+              1
             ],
             "width": 2.5,
             "style": "esriSLSSolid"
