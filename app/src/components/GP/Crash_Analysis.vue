@@ -2,13 +2,13 @@
   <div class="content">
     <nav class="header-label">Crash Analysis Task</nav>
     <span class="label">Buffer Distance</span>
-    <Slider :value.sync="distance" :step="step" :min="range.min" :max="range.max" @update:value="slider_update"></Slider>
-    <span class="label" style="padding: 5px 85px;">Crash Field</span>
-    <b-form-select class="dropdown" v-model="selected" :options="crash_fields" @change="dropdown_update"></b-form-select>
-    <div style="display:flex;">
-    <i class="fas fa-pen-square draw" :class="{active:state.active}" @click="drawStart"></i>
-    <geoprocessor class="gp-wrapper" :url="url" :params="params" :enabled="!state.disabled" @task-complete="taskComplete"></geoprocessor>
-    </div>
+      <Slider :value.sync="distance" :step="step" :min="range.min" :max="range.max" @update:value="slider_update"></Slider>
+        <span class="label" style="padding: 5px 85px;">Crash Field</span>
+          <b-form-select class="dropdown" v-model="selected" :options="crash_fields" @change="dropdown_update"></b-form-select>
+        <div style="display:flex;">
+          <i class="fas fa-pen-square draw" :class="{active:state.active}" @click="drawStart"></i>
+           <geoprocessor class="gp-wrapper" :url="url" :params="params" :enabled="!state.disabled" @task-complete="taskComplete"></geoprocessor>
+      </div>
     </div>
 </template>
 <script>

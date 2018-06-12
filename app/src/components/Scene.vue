@@ -64,19 +64,21 @@
     },
     data() {
       return {
-        // vue scene object structure - all of these objects and properties the vue instance needs access to
+        // vue object structure - all of these objects and properties the vue instance needs access to
         view: {
+          // once scene is intialized set for vue object to have access to
           scene: null,
+          // is scene in 2d mode
           is2D: true
         },
         // configs pulled from config.json for initializing objects
         config: {
-          // used when initializing sceneview
           view: {
+            // used when initializing sceneview
             initExtent: Config.Map.initExtent,
           },
-          // used when intializing parcel and intersection mapImageLayers()
           urls: {
+            // used when intializing parcel and intersection mapImageLayers()
             parcels: Config.Layers.parcels,
             intersections: Config.Layers.intersections
           }
@@ -95,6 +97,7 @@
             state:{
               disabled: true
             },
+            // the selected parcel to pass into the report card
             feature: null,
             // GP props to pass into @PropertyExport component
             configs: {
@@ -181,7 +184,7 @@
         // clear buffers
         this.tasks.crash.buffers = null;
 
-        // run tool disabled until selection is made
+        // disable run tool button until selection is made
         this.tasks.crash.state.disabled = true;
 
         // UI state
@@ -274,12 +277,12 @@
         // ::::::::::::::::::::::::::::::::::::::: \\
           this.view.scene.popup.watch('visible', (visible) => {
             if (visible) {
-              // set currently selected feature to property_export.params.feature property on vue data object \\
+              // set currently selected feature to property_export.params.feature property on vue data object pass into @propertyExport \\
               this.tasks.property_export.feature = this.view.scene.popup.viewModel.selectedFeature;
 
               const oid = this.view.scene.popup.viewModel.selectedFeature.attributes.OBJECTID;
 
-              // set webmap_json to property_export.params.webmap_json property on vue data object \\
+              // set webmap_json to property_export.params.webmap_json property on vue data object pass into @propertyExport \\
               this.tasks.property_export.configs.webmap_json = WebMap_Json(this.view.scene, parcels, oid);
 
               // when popup is visible enable run task button
@@ -320,10 +323,10 @@
             // #SketchViewModel -- simplifies the process of adding temporary geometries to the MapView/SceneView abstracts the work of sketching geometry types
             let sketchViewModel = Select.init(view);
 
-            // assign sketchViewModel instance to crash.draw property on vue instance - hoist access to draw_start event
+            // assign sketchViewModel instance to crash.draw property on vue instance - to give vue instance access to draw_start event handler
             this.tasks.crash.draw = sketchViewModel;
 
-            // :: define add method to execute on 'draw-complete' :: \\
+            // :: define add() method to execute on 'draw-complete' :: \\
             const add = async (evt) => {
 
               // @_Analysis Module call Select.makeSelection returns graphics object/featureset and assigns it to selection
@@ -332,7 +335,7 @@
               // destructure selection to assign graphics & featureset variables
               const {graphics, featureset} = selection;
 
-              // add point buffers/overall buffer/point graphics graphics retrieved from makeSelection to map
+              // add intersection point graphics/ intersection point buffers / and the overall buffer graphics to the Scene
               view.graphics.addMany(graphics.selected_points);
               view.graphics.addMany(graphics.buffers);
               view.graphics.add(graphics.buffer);
@@ -340,9 +343,9 @@
               // assign featureset to gp_params.buffers on vue data() object to pass into crashtool
               this.tasks.crash.buffers = featureset;
 
-              // deactivate draw icon on selection
+              // make draw icon not active on selection
               this.tasks.crash.state.active = false;
-              // enable run analysis check button
+              // enable run analysis button
               this.tasks.crash.state.disabled = false;
             };
 
